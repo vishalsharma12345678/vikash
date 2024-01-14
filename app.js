@@ -12,8 +12,10 @@ const session = require("express-session");
 const userRoutes = require("./api/userRoutes");
 const flash = require("connect-flash");
 require("dotenv").config();
+// app.use(cors());
+app.use(cors({origin: ['http://localhost:3000'],credentials: true,methods:"GET,POST,PUT,DELETE"}));
 let url =
-  "mongodb+srv://vikashRathour:12345adt@cluster1.2iwi0oy.mongodb.net/quotesretryWrites=true&w=majority";
+  "mongodb+srv://vshalsha1234:12345adt@cluster0.6nzjjty.mongodb.net/vikashretryWrites=true&w=majority";
 mongoose
   .connect(url)
   .then(() => {
@@ -38,13 +40,7 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  cors({
-    origin: "http://localhost:3000/",
-    credentials: true,
-    methods: "GET,POST,PUT,DELETE",
-  })
-);
+
 app.use(flash());
 
 app.use(passport.session());
@@ -56,9 +52,9 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(methodOverride("_method"));
 passport.use(new LocalStrategy(User.authenticate()));
-app.get('/', (req, res)=>{
-    res.send('ok')
-})
+app.get("/", (req, res) => {
+  res.send("ok");
+});
 app.use(quoteRoutes);
 app.use(userRoutes);
 

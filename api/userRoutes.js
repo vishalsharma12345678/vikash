@@ -38,7 +38,7 @@ routes.post('/login',
    }),
 
   async (req, res)=> {
-    let user  = await User.findOne({username: req.body.username})
+    let user  = await User.findOne({username: 'vishal'})
      res.status(200).json({message:"User login successfully",user:user});
 });
 
