@@ -13,7 +13,7 @@ const userRoutes = require("./api/userRoutes");
 const flash = require("connect-flash");
 require("dotenv").config();
 // app.use(cors());
-app.use(cors({origin: ['http://localhost:3000'],credentials: true,methods:"GET,POST,PUT,DELETE"}));
+app.use(cors({origin: ['http://localhost:3000/'],credentials: true,methods:"GET,POST,PUT,DELETE"}));
 let url =
   "mongodb+srv://vshalsha1234:12345adt@cluster0.6nzjjty.mongodb.net/vikashretryWrites=true&w=majority";
 mongoose
