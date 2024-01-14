@@ -15,13 +15,19 @@ require("dotenv").config();
 // app.use(cors());
 let url =
   "mongodb+srv://vshalsha1234:12345adt@cluster0.6nzjjty.mongodb.net/vikashretryWrites=true&w=majority";
-mongoose
-  .connect(url)
-  .then(() => {
-    console.log("mongodb connection established");
-  })
-  .catch(() => {
-    console.log("error connecting to MongoDB");
+
+  //connect to the database
+  mongoose.connect(url,{useNewUrlParser: true,useNewUrlParser: true, useUnifiedTopology: true});
+  const db = mongoose.connection;
+  
+  //error
+  db.on('error', function(err) { 
+      console.log(err.message);
+  });
+  
+  //up and running then print the message
+  db.once('open', function() {
+      console.log("Successfully connected to the database");
   });
 
 app.use(
